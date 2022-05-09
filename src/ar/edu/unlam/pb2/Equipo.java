@@ -13,8 +13,8 @@ public class Equipo {
 		jugadores = new Jugador[cantidadDeJugadoresMaximo];
 	}
 
-	public boolean agregarJugador(String nombre, Integer numeroCamiseta) {
-		Jugador candidatoAFichar = new Jugador(nombre, numeroCamiseta);
+	public boolean agregarJugador(String nombre, Integer numeroCamiseta, Double valor) {
+		Jugador candidatoAFichar = new Jugador(nombre, numeroCamiseta,valor);
 		if(cantidadDeJugadoresAgregados<cantidadDeJugadoresMaximo) {
 			for (int i = 0; i < jugadores.length; i++) {
 				if(jugadores[i]==null) {
@@ -29,6 +29,16 @@ public class Equipo {
 
 	public Integer getCantidadDeJugadoresAgregados() {
 		return cantidadDeJugadoresAgregados;
+	}
+
+	public double getPrecioTotalEquipo() {
+		double valorDelEquipoAcumulado=0.0;
+		for (int i = 0; i < jugadores.length; i++) {
+			if(jugadores[i]!=null) {
+				valorDelEquipoAcumulado+=jugadores[i].getValor();
+			}
+		}
+		return valorDelEquipoAcumulado;
 	}
 	
 	
