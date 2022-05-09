@@ -71,5 +71,21 @@ public class TestAFA {
 
 		assertNotNull(sistemaAfa.registrarNuevoPartido(river, boca));
 	}
+	
+	@Test
+	public void queSeRegistreElAutorYMinutoDelGol() {
+		TorneoFutsal sistemaAfa = new TorneoFutsal(25);
+		Equipo river = new Equipo("River", 5);
+		Equipo boca = new Equipo("Boca", 5);
+		final String AUTOR_Y_MINUTO_ESPERADO="Enzo ha marcado el gol a los 00:15 minutos";
+		final Integer CANTIDAD_DE_GOLES_MARCADOS_ESPERADOS=1;
+
+		river.agregarJugador("Enzo",1,15000.0,30);
+		Partido clasico = sistemaAfa.registrarNuevoPartido(river, boca);
+		String nombreDelAutorYMinuto=clasico.marcarGol(river, river.getJugadorSegunOrdenDelFichaje(0));
+		
+		assertEquals(AUTOR_Y_MINUTO_ESPERADO, nombreDelAutorYMinuto);
+		assertEquals(CANTIDAD_DE_GOLES_MARCADOS_ESPERADOS, river.getGolesTotales());
+	}
 
 }

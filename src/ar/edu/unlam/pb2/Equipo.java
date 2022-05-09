@@ -4,13 +4,14 @@ public class Equipo {
 
 	private String nombre;
 	private Jugador jugadores[];
-	private Integer cantidadDeJugadoresMaximo, cantidadDeJugadoresAgregados;
+	private Integer cantidadDeJugadoresMaximo, cantidadDeJugadoresAgregados, golesTotales;
 
 	public Equipo(String nombre, Integer cantidadDeJugadoresMaximo) {
 		this.nombre = nombre;
 		this.cantidadDeJugadoresMaximo=cantidadDeJugadoresMaximo;
 		this.cantidadDeJugadoresAgregados=0;
 		jugadores = new Jugador[cantidadDeJugadoresMaximo];
+		golesTotales=0;
 	}
 
 	public boolean agregarJugador(String nombre, Integer numeroCamiseta, Double valor, Integer edad) {
@@ -51,6 +52,20 @@ public class Equipo {
 		}
 		return (edadPromedioDelEquipoAcumulado/jugadores.length);
 	}
+
+	public Jugador getJugadorSegunOrdenDelFichaje(Integer ordenDeFichaje) {
+		return jugadores[ordenDeFichaje];
+	}
+
+	public void sumargolesTotales() {
+		golesTotales++;
+	}
+
+	public Integer getGolesTotales() {
+		return golesTotales;
+	}
+	
+	
 	
 	
 	
