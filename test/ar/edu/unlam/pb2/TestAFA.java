@@ -4,6 +4,7 @@
 package ar.edu.unlam.pb2;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -60,7 +61,15 @@ public class TestAFA {
 		assertTrue(river.agregarJugador("Enzo",1,15000.0,35));
 		assertTrue(river.agregarJugador("Enzo",1,15000.0,18));
 		assertEquals(EDAD_PROMEDIO_EQUIPO_ESPERADO, river.getPromedioEdadEquipo(), 0.01);
+	}
+	
+	@Test
+	public void queSePuedaCrearUnNuevoPartidoConLocalYVisitante() {
+		TorneoFutsal sistemaAfa = new TorneoFutsal(25);
+		Equipo river = new Equipo("River", 5);
+		Equipo boca = new Equipo("Boca", 5);
 
+		assertNotNull(sistemaAfa.registrarNuevoPartido(river, boca));
 	}
 
 }
