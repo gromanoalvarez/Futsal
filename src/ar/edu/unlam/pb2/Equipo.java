@@ -13,8 +13,8 @@ public class Equipo {
 		jugadores = new Jugador[cantidadDeJugadoresMaximo];
 	}
 
-	public boolean agregarJugador(String nombre, Integer numeroCamiseta, Double valor) {
-		Jugador candidatoAFichar = new Jugador(nombre, numeroCamiseta,valor);
+	public boolean agregarJugador(String nombre, Integer numeroCamiseta, Double valor, Integer edad) {
+		Jugador candidatoAFichar = new Jugador(nombre, numeroCamiseta,valor, edad);
 		if(cantidadDeJugadoresAgregados<cantidadDeJugadoresMaximo) {
 			for (int i = 0; i < jugadores.length; i++) {
 				if(jugadores[i]==null) {
@@ -39,6 +39,17 @@ public class Equipo {
 			}
 		}
 		return valorDelEquipoAcumulado;
+	}
+
+	public double getPromedioEdadEquipo() {
+		double edadPromedioDelEquipoAcumulado=0.0;
+		for (int i = 0; i < jugadores.length; i++) {
+			if(jugadores[i]!=null) {
+				edadPromedioDelEquipoAcumulado+=jugadores[i].getEdad();
+				
+			}
+		}
+		return (edadPromedioDelEquipoAcumulado/jugadores.length);
 	}
 	
 	
