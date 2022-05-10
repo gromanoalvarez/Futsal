@@ -28,13 +28,24 @@ public class Partido {
 	public String amonestacionDeJugadores(Jugador jugador) {
 		String mensaje="";
 		if(amonestados.contains(jugador)) {
+			return expulsionDeJugadores(jugador);
+		}else {
+			amonestados.add(jugador);
+			mensaje = "Se ha amonestado a " + jugador.getNombre() + " a los 66min";
+			return mensaje;
+		}
+	}
+	
+	public String expulsionDeJugadores(Jugador jugador) {
+		String mensaje="";
+		if(amonestados.contains(jugador)) {
 			amonestados.remove(jugador);
 			expulsados.add(jugador);
 			mensaje = "Se ha expulsado a " + jugador.getNombre() + " por doble amonestación a los 41 min";
 			return mensaje;
 		}else {
-			amonestados.add(jugador);
-			mensaje = "Se ha amonestado a " + jugador.getNombre() + " a los 66min";
+			expulsados.add(jugador);
+			mensaje = "Se ha expulsado a " + jugador.getNombre() + " por amonestación directa los 41 min";
 			return mensaje;
 		}
 	}

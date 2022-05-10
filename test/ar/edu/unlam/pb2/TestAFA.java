@@ -109,22 +109,28 @@ public class TestAFA {
 		TorneoFutsal sistemaAfa = new TorneoFutsal(25);
 		Equipo river = new Equipo("River", 5);
 		Equipo boca = new Equipo("Boca", 5);
-		final String MENSAJE_ESPERADO= "Se ha amonestado a Enzo a los 66min";
-		final Integer CANTIDAD_DE_AMONESTADOS_ESPERADOS=1;
+		final String MENSAJE_ESPERADO= "Se ha expulsado a casco por doble amonestación a los 41 min";
+		final Integer CANTIDAD_DE_EXPULSADOS_ESPERADOS=1;
+		final Integer CANTIDAD_DE_AMONESTADOS_ESPERADOS=0;
 
 		river.agregarJugador("Enzo",5,15000.0,30);
 		river.agregarJugador("armani",1,15000.0,30);
 		river.agregarJugador("casco",7,15000.0,30);
 		Partido clasico = sistemaAfa.registrarNuevoPartido(river, boca);
 		
+		Jugador amonestado = river.getJugadorSegunOrdenDelFichaje(2);
+		//primera amonestacion
+		clasico.amonestacionDeJugadores(amonestado);
 		
-	
+		//segunda amonestacion
+		assertEquals(MENSAJE_ESPERADO, clasico.amonestacionDeJugadores(amonestado));
+		assertEquals(CANTIDAD_DE_AMONESTADOS_ESPERADOS, (Integer)clasico.amonestados.size());
+		assertEquals(CANTIDAD_DE_EXPULSADOS_ESPERADOS, (Integer)clasico.expulsados.size());	
 	}
 	
 	@Test
 	public void queSePuedaConocerLaListaDeExpulsados() {
-		//por doble amonestacion
-		//por falta directa
+		//ya sea por doble amonestacion o por falta directa
 	}
 	
 	@Test
