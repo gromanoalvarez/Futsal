@@ -26,7 +26,6 @@ public class TorneoFutsal {
 		return cantidadDeEquiposAgregados;
 	}
 
-
 	public Partido registrarNuevoPartido(Equipo local, Equipo visitante) {
 		Partido nuevoPartido = new Partido(local, visitante);
 		return nuevoPartido;
