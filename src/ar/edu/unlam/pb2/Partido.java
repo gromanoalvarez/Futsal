@@ -52,4 +52,12 @@ public class Partido {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "Local=" + local + ", Visitante=" + visitante + "\n Goles=\n" + goles + "\n Amonestados=\n"
+				+ amonestados + "\n Expulsados=\n" + expulsados;
+	}
+	
+	
+
 }

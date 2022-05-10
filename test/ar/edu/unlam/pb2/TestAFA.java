@@ -173,10 +173,23 @@ public class TestAFA {
 	
 	@Test
 	public void queSePuedaConocerElResumenDelPartido() {
-		//resultado
-		//autoresDeGoles
-		//amonestados
-		//expulsados
+		TorneoFutsal sistemaAfa = new TorneoFutsal(25);
+		Equipo river = new Equipo("River", 5);
+		Equipo boca = new Equipo("Boca", 5);
+		final String MENSAJE_ESPERADO="Local=River 1, Visitante=Boca 0\n Goles=\n[autor=casco]\n Amonestados=\n[Enzo, camiseta=5, edad=30, golAFavor=0]\n Expulsados=\n[rojo, camiseta=1, edad=30, golAFavor=0]";
+
+		river.agregarJugador("Enzo",5,15000.0,30);
+		river.agregarJugador("casco",7,15000.0,30);
+		boca.agregarJugador("rojo",1,15000.0,30);
+		Partido clasico = sistemaAfa.registrarNuevoPartido(river, boca);
+		Jugador goleador = river.getJugadorSegunOrdenDelFichaje(1);
+		Jugador amonestado = river.getJugadorSegunOrdenDelFichaje(0);
+		Jugador expulsado = boca.getJugadorSegunOrdenDelFichaje(0);
+		clasico.marcarGol(river, goleador);
+		clasico.amonestacionDeJugadores(amonestado);
+		clasico.expulsionDeJugadores(expulsado);
+		
+		assertEquals(MENSAJE_ESPERADO, clasico.toString());		
 	}
 	
 

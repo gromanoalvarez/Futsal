@@ -64,6 +64,11 @@ public class Equipo {
 	public Integer getGolesTotales() {
 		return golesTotales;
 	}
+
+	@Override
+	public String toString() {
+		return nombre + " " + golesTotales;
+	}
 	
 	
 	

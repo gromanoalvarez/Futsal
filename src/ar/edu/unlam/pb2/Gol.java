@@ -11,6 +11,11 @@ public class Gol {
 	public Jugador getAutor() {
 		return autor;
 	}
+
+	@Override
+	public String toString() {
+		return "autor=" + autor.getNombre();
+	}
 	
 
 }
