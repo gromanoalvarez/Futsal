@@ -129,8 +129,46 @@ public class TestAFA {
 	}
 	
 	@Test
+	public void queNoSePuedaExpulsarDosVecesAlMismoJugadorDentroDelPartido() {
+		TorneoFutsal sistemaAfa = new TorneoFutsal(25);
+		Equipo river = new Equipo("River", 5);
+		Equipo boca = new Equipo("Boca", 5);
+		final Integer CANTIDAD_DE_EXPULSADOS_ESPERADOS=1;
+		final String MENSAJE_ESPERADO= "Este jugador ya fue expulsado del partido ahora debe abandonar la cancha";
+		
+		river.agregarJugador("Enzo",5,15000.0,30);
+		river.agregarJugador("armani",1,15000.0,30);
+		river.agregarJugador("casco",7,15000.0,30);
+		Partido clasico = sistemaAfa.registrarNuevoPartido(river, boca);
+		
+		Jugador amonestado = river.getJugadorSegunOrdenDelFichaje(2);
+		//expulsado por doble amarilla
+		clasico.amonestacionDeJugadores(amonestado);
+		clasico.amonestacionDeJugadores(amonestado);
+		//tratar de volver a expulsar debe 
+		assertEquals(MENSAJE_ESPERADO, clasico.expulsionDeJugadores(amonestado));
+		assertEquals(CANTIDAD_DE_EXPULSADOS_ESPERADOS, (Integer)clasico.expulsados.size());	
+	}
+	
+	@Test
 	public void queSePuedaConocerLaListaDeExpulsados() {
 		//ya sea por doble amonestacion o por falta directa
+		TorneoFutsal sistemaAfa = new TorneoFutsal(25);
+		Equipo river = new Equipo("River", 5);
+		Equipo boca = new Equipo("Boca", 5);
+		final Integer CANTIDAD_DE_EXPULSADOS_ESPERADOS=2;
+
+		river.agregarJugador("Enzo",5,15000.0,30);
+		river.agregarJugador("casco",7,15000.0,30);
+		boca.agregarJugador("rojo",1,15000.0,30);
+		Partido clasico = sistemaAfa.registrarNuevoPartido(river, boca);
+		Jugador expulsadoUno = river.getJugadorSegunOrdenDelFichaje(1);
+		Jugador expulsadoDos = boca.getJugadorSegunOrdenDelFichaje(0);
+		clasico.expulsionDeJugadores(expulsadoUno);
+		clasico.expulsionDeJugadores(expulsadoDos);
+		
+		assertEquals(CANTIDAD_DE_EXPULSADOS_ESPERADOS, (Integer)clasico.expulsados.size());	
+		assertNotNull( clasico.expulsados);
 	}
 	
 	@Test

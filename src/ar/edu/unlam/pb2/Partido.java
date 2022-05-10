@@ -38,12 +38,14 @@ public class Partido {
 	
 	public String expulsionDeJugadores(Jugador jugador) {
 		String mensaje="";
-		if(amonestados.contains(jugador)) {
+		if(expulsados.contains(jugador)) {
+			return "Este jugador ya fue expulsado del partido ahora debe abandonar la cancha";
+		}else if(amonestados.contains(jugador)) {
 			amonestados.remove(jugador);
 			expulsados.add(jugador);
 			mensaje = "Se ha expulsado a " + jugador.getNombre() + " por doble amonestación a los 41 min";
 			return mensaje;
-		}else {
+		}else{
 			expulsados.add(jugador);
 			mensaje = "Se ha expulsado a " + jugador.getNombre() + " por amonestación directa los 41 min";
 			return mensaje;
